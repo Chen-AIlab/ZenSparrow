@@ -1,0 +1,49 @@
+# ============================================
+# 安全红线：以下内容绝对不能上传到 GitHub
+# ============================================
+
+# 工作区内部数据（聊天记录、日志、截图等敏感信息）
+.workbuddy/
+logs/
+screenshots/
+*.log
+*.jsonl
+
+# 构建产物和压缩包
+*.zip
+*.pyc
+__pycache__/
+*.egg-info/
+
+# 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Python 虚拟环境
+venv/
+env/
+.env
+.venv
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# PPT 和二进制大文件
+*.pptx
+*.png
+*.jpg
+*.jpeg
+
+# 可能的凭据文件
+*.pem
+*.key
+credentials*
+secrets*
