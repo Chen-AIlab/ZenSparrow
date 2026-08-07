@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>星环 X1 · 线性放映版</title>
+<style>
+:root{
+  --paper:#ffffff; --ink:#1d1d1f; --grey-1:#f5f5f7;
+  --text-2:#6e6e73; --accent:#0071e3;
+  --pad-x:5vw; --pad-y:5.6vh;
+  --sans:-apple-system,"SF Pro Display","Inter","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink)}
+#track{display:flex;height:100vh;transition:transform .55s cubic-bezier(.2,0,.38,.9)}
+.slide{flex:0 0 100vw;height:100vh;padding:var(--pad-y) var(--pad-x);display:flex;flex-direction:column;gap:2.4vh}
+.slide.dark{background:var(--ink);color:#fff}
+.chrome{display:flex;justify-content:space-between;font-size:14px;color:var(--text-2);letter-spacing:.08em;text-transform:uppercase}
+.kicker{font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1.big{font-size:min(5.8vw,10.2vh);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.lead{font-size:18px;color:var(--text-2);max-width:56ch;line-height:1.6}
+.body{flex:1;display:grid;gap:16px;align-content:start}
+.foot{font-size:14px;color:var(--text-2);border-top:1px solid rgba(0,0,0,.08);padding-top:1.6vh}
+.card{background:var(--grey-1);border-radius:18px;padding:24px}
+#dots{position:fixed;bottom:2vh;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:50}
+#dots i{width:8px;height:8px;border-radius:99px;background:rgba(0,0,0,.18);cursor:pointer;transition:.3s}
+#dots i.on{background:var(--accent);width:22px}
+.home{position:fixed;top:18px;left:18px;z-index:60;font-size:14px;font-weight:600;padding:8px 16px;border-radius:99px;background:var(--grey-1);color:var(--ink);text-decoration:none}
+[data-anim]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(0,0,.3,1)}
+.slide.active [data-anim]{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<!-- 技能演示：线性模式（M1）。←→ 翻页 / 滚轮 / 触屏滑动 / ESC 跳页 -->
+<a class="home" id="homeBtn" href="index.html">← 模式总览</a>
+<div id="track">
+
+<section class="slide dark">
+  <div class="chrome"><span>STARRING X1 · LAUNCH</span><span>01 / 05</span></div>
+  <div class="kicker" data-anim>STARRING X1</div>
+  <h1 class="big" data-anim>星环 X1 智能眼镜<br/>看见更大的世界</h1>
+  <p class="lead" data-anim>38g 轻量化 · 全天候续航 · 等效 120 英寸空间巨幕。</p>
+  <div class="foot">发布会演示 · ←→ 翻页 · ESC 跳页 · 左上角返回目录</div>
+</section>
+
+<section class="slide">
+  <div class="chrome"><span>HIGHLIGHTS</span><span>02 / 05</span></div>
+  <div class="kicker" data-anim>HIGHLIGHTS</div>
+  <h1 class="big" data-anim>三大产品亮点</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim><b>38g 轻量化</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">钛合金镜架，全天佩戴无压感。</p></div>
+    <div class="card" data-anim><b>全天候续航</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">典型使用 14 小时。</p></div>
+    <div class="card" data-anim><b>空间显示</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">等效 3 米 120 英寸巨幕。</p></div>
+  </div>
+  <div class="foot">演示内容均为虚构</div>
+</section>
+
+<section class="slide">
+  <div class="chrome"><span>SPECS</span><span>03 / 05</span></div>
+  <div class="kicker" data-anim>SPECS</div>
+  <h1 class="big" data-anim>技术规格</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim><b>显示</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">双目 Micro-OLED · 90Hz</p></div>
+    <div class="card" data-anim><b>芯片</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">自研 R1 · 12ms 延迟</p></div>
+    <div class="card" data-anim><b>音频</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">开放式双单元定向声场</p></div>
+  </div>
+  <div class="foot">演示内容均为虚构</div>
+</section>
+
+<section class="slide">
+  <div class="chrome"><span>LAUNCH PLAN</span><span>04 / 05</span></div>
+  <div class="kicker" data-anim>LAUNCH</div>
+  <h1 class="big" data-anim>发售计划</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim><b>09.01 预售</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">官网与电商平台同步开启。</p></div>
+    <div class="card" data-anim><b>09.15 开售</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">首批现货，预购优先发货。</p></div>
+    <div class="card" data-anim><b>10.01 体验店</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">全国 20 家店开放试戴。</p></div>
+  </div>
+  <div class="foot">演示内容均为虚构</div>
+</section>
+
+<section class="slide dark">
+  <div class="chrome"><span>CLOSING</span><span>05 / 05</span></div>
+  <h1 class="big" data-anim style="margin:auto 0">星环 X1<br/>9 月见。</h1>
+  <div class="foot" style="border-color:rgba(255,255,255,.15)">谢谢观看 · 演示内容均为虚构</div>
+</section>
+
+</div>
+<div id="dots"></div>
+<script>
+const track=document.getElementById('track'),slides=[...document.querySelectorAll('.slide')];
+let i=0,lock=false;
+const dots=document.getElementById('dots');
+slides.forEach((_,n)=>{const d=document.createElement('i');d.onclick=()=>go(n);dots.appendChild(d)});
+function go(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  track.style.transform=`translateX(${-i*100}vw)`;
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+}
+function step(d){if(lock)return;lock=true;setTimeout(()=>lock=false,500);go(i+d)}
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key))step(1);
+  if(['ArrowLeft','PageUp'].includes(e.key))step(-1);
+  if(e.key==='Escape'){const n=prompt(`跳转到第几页？(1-${slides.length})`,i+1);if(n)go(+n-1)}
+});
+addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>30)step(e.deltaY>0?1:-1)});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)step(dx<0?1:-1);tx=null});
+const q=new URLSearchParams(location.search);
+if(q.get("from")==="m6"){const h=document.getElementById("homeBtn");h.href="m6.html";h.textContent="← 缩略图总览"}
+go(q.get("s")?+q.get("s"):0);
+</script>
+</body>
+</html>

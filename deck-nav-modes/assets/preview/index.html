@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>演示导航模式体验馆 · deck-nav-modes</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.mode-tag{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(0,113,227,.1);color:var(--accent)}
+.hub-card .best{font-size:13px;color:var(--text-2);margin-top:auto;padding-top:8px;border-top:1px solid rgba(0,0,0,.06)}
+.hub-card.accent .best{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.2)}
+</style>
+</head>
+<body>
+<!-- 模式体验馆：6 种导航模式，同一套内容，逐一点击体验 -->
+<main class="page">
+  <div class="chrome"><span>DECK-NAV-MODES · GALLERY</span><span>6 MODES</span></div>
+  <div class="kicker" data-anim>MODE GALLERY · 模式体验馆</div>
+  <h1 class="big" data-anim="2">六种演示导航模式<br/>一次体验完</h1>
+  <p class="lead" data-anim="3">同一套"星环 X1"内容，六种不同的翻页/跳转方式。点击卡片进入体验，每个 demo 左上角都能回到本页。</p>
+
+  <div class="hub-grid" data-anim="4">
+    <a class="hub-card" href="m1.html">
+      <span class="mode-tag">M1</span>
+      <span class="ttl">线性模式</span>
+      <span class="sub">一页接一页顺序放映，键盘 ←→ / 滚轮 / 触屏翻页，ESC 跳页。</span>
+      <span class="best">适合：正式演讲、限时汇报</span>
+    </a>
+    <a class="hub-card" href="m2.html">
+      <span class="mode-tag">M2</span>
+      <span class="ttl">目录中心模式</span>
+      <span class="sub">目录页点击卡片进详情页，可返回再进其他主题。</span>
+      <span class="best">适合：内部研讨、评审、答疑多</span>
+    </a>
+    <a class="hub-card" href="m3.html">
+      <span class="mode-tag">M3</span>
+      <span class="ttl">混合模式</span>
+      <span class="sub">主干线性播放，章节菜单随时呼出跳转。</span>
+      <span class="best">适合：正式演讲但会被提问打断</span>
+    </a>
+    <a class="hub-card" href="m4.html">
+      <span class="mode-tag">M4</span>
+      <span class="ttl">长页滚动模式</span>
+      <span class="sub">单长页纵向滚动，章节随滚动依次入场。</span>
+      <span class="best">适合：会后传阅、手机查看</span>
+    </a>
+    <a class="hub-card" href="m5.html">
+      <span class="mode-tag">M5</span>
+      <span class="ttl">时间线主轴模式</span>
+      <span class="sub">可点击的时间线作目录，点击节点进详情。</span>
+      <span class="best">适合：规划排期、年度总结、复盘</span>
+    </a>
+    <a class="hub-card accent" href="m6.html">
+      <span class="mode-tag" style="background:rgba(255,255,255,.2);color:#fff">M6</span>
+      <span class="ttl">缩略图总览模式</span>
+      <span class="sub">全部页面缩略图平铺，点击放大进入放映。</span>
+      <span class="best">适合：20 页以上的大材料</span>
+    </a>
+  </div>
+
+  <div class="foot">演示内容均为虚构 · deck-nav-modes 技能 · 模式体验馆</div>
+</main>
+</body>
+</html>

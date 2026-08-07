@@ -8,6 +8,7 @@
 |------|------|------|------|
 | [微信发送](./tree/wechat-sender) | `wechat-sender` | 通过 AI 助手自动发送微信消息和文件，支持 macOS / Windows | ✅ |
 | [skunk](./tree/skunk) | `skunk` | 网站探索工具箱：连接真实浏览器，自动浏览、截图、提取结构、检测报错 | ✅ |
+| [deck-nav-modes](./tree/deck-nav-modes) | `deck-nav-modes` | 演讲材料导航模式生成器：6 种导航模式 + 内置体验馆，一键生成 HTML 演示材料 | ✅ |
 
 ## 使用方式
 
@@ -24,5 +25,6 @@ git checkout <分支名>
 
 | 日期 | 更新 |
 |------|------|
+| 2026-08-07 | 上线 deck-nav-modes 演讲材料导航模式生成器 |
 | 2026-06-05 | 上线 skunk 网站探索工具箱 |
 | 2025-06-05 | 初始创建，上线 wechat-sender（macOS + Windows） |

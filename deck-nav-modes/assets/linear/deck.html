@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>线性演示 · 替换为你的标题</title>
+<style>
+:root{
+  /* 主题色：按需整体替换这组变量即可 */
+  --paper:#ffffff; --ink:#1d1d1f; --grey-1:#f5f5f7;
+  --text-2:#6e6e73; --accent:#0071e3;
+  --pad-x:5vw; --pad-y:5.6vh;
+  --nav-safe-bottom:88vh; /* 内容最低处不得越过此线（底部分页点安全区） */
+  --sans:-apple-system,"SF Pro Display","Inter","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink)}
+/* 翻页轨道：所有 slide 横向排，JS 平移 */
+#track{display:flex;height:100vh;transition:transform .55s cubic-bezier(.2,0,.38,.9)}
+.slide{flex:0 0 100vw;height:100vh;padding:var(--pad-y) var(--pad-x);display:flex;flex-direction:column;gap:2.4vh}
+.slide.dark{background:var(--ink);color:#fff}
+/* 页眉 / 标题区 / 内容区 / 页脚 —— 每页同一骨架，保证格式稳定 */
+.chrome{display:flex;justify-content:space-between;font-size:14px;color:var(--text-2);letter-spacing:.08em;text-transform:uppercase}
+.kicker{font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1.big{font-size:min(5.8vw,10.2vh);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+/* h1.big 按 design-tokens 的 L1 Display 处理（封面级）。正文页如需更克制的 L2 页标题，
+   给标题加 class="big l2" 即可，或把下方字号换成 min(3.4vw,6vh) */
+h1.big.l2{font-size:min(3.4vw,6vh)}
+.lead{font-size:18px;color:var(--text-2);max-width:56ch;line-height:1.6}
+.body{flex:1;display:grid;gap:16px;align-content:start}
+.foot{font-size:14px;color:var(--text-2);border-top:1px solid rgba(0,0,0,.08);padding-top:1.6vh}
+.card{background:var(--grey-1);border-radius:18px;padding:24px}
+/* 分页 dot */
+#dots{position:fixed;bottom:2vh;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:50}
+#dots i{width:8px;height:8px;border-radius:99px;background:rgba(0,0,0,.18);cursor:pointer;transition:.3s}
+#dots i.on{background:var(--accent);width:22px}
+/* 入场动效：data-anim 数值越大越晚入场，形成序列 */
+[data-anim]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(0,0,.3,1)}
+.slide.active [data-anim]{opacity:1;transform:none}
+.slide.active [data-anim="2"]{transition-delay:.08s}
+.slide.active [data-anim="3"]{transition-delay:.16s}
+.slide.active [data-anim="4"]{transition-delay:.24s}
+.slide.active [data-anim="5"]{transition-delay:.32s}
+/* ESC 页码索引浮层（投屏场景替代 prompt，不会弹出系统输入框） */
+#jump{position:fixed;inset:0;z-index:70;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center}
+#jump.open{display:flex}
+#jump .panel{display:grid;gap:10px;min-width:min(360px,80vw)}
+#jump h2{font-size:14px;letter-spacing:.18em;color:var(--text-2);text-transform:uppercase;margin-bottom:6px}
+#jump a{display:flex;gap:12px;align-items:baseline;padding:12px 16px;border-radius:12px;background:var(--grey-1);text-decoration:none;color:var(--ink)}
+#jump a .n{font-size:13px;font-weight:600;color:var(--accent)}
+#jump a .t{font-size:16px;font-weight:700}
+</style>
+</head>
+<body>
+<div id="track">
+
+<!-- ============ 第 1 页 · 封面。改文字：替换 h1.big 与 lead ============ -->
+<section class="slide dark">
+  <div class="chrome"><span>DECK TITLE · 2026</span><span>01 / 03</span></div>
+  <div class="kicker" data-anim="2">SECTION KICKER</div>
+  <h1 class="big" data-anim="3">主标题写在这里<br/>可以两行</h1>
+  <p class="lead" data-anim="4">一句话副标，定调全场。图片槽位示例：
+  <!-- 图片：把图片放到 images/01-cover.png 即可自动显示 -->
+  <img src="images/01-cover.png" onerror="this.style.display='none'" style="max-width:40vw;border-radius:18px"/>
+  <!-- 视频：把上面 img 换成 <video src="images/01-cover.mp4" autoplay muted loop playsinline style="max-width:40vw;border-radius:18px"> --></p>
+  <div class="foot">发言人 · 部门 · 日期 ｜ ←→ 翻页 · ESC 索引</div>
+</section>
+
+<!-- ============ 第 2 页 · 正文示例：卡片网格 ============ -->
+<section class="slide">
+  <div class="chrome"><span>SECTION 01</span><span>02 / 03</span></div>
+  <div class="kicker" data-anim="2">TOPIC</div>
+  <h1 class="big" data-anim="3">正文页标题</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim="4"><b>要点一</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">说明文字</p></div>
+    <div class="card" data-anim="4"><b>要点二</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">说明文字</p></div>
+    <div class="card" data-anim="4"><b>要点三</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">说明文字</p></div>
+  </div>
+  <div class="foot">脚注 / 数据来源</div>
+</section>
+
+<!-- ============ 第 3 页 · 收尾 ============ -->
+<section class="slide dark">
+  <div class="chrome"><span>CLOSING</span><span>03 / 03</span></div>
+  <h1 class="big" data-anim="2" style="margin:auto 0">谢谢。<br/>期待一起讨论。</h1>
+  <div class="foot" style="border-color:rgba(255,255,255,.15)">联系方式 · 部门</div>
+</section>
+
+</div>
+<div id="dots"></div>
+<div id="jump"><div class="panel"><h2>跳转到页面 · 点击空白或 ESC 关闭</h2></div></div>
+<script>
+const track=document.getElementById('track'),slides=[...document.querySelectorAll('.slide')];
+const jump=document.getElementById('jump'),jumpPanel=jump.querySelector('.panel');
+let i=0,lock=false,lastWheel=0;
+const dots=document.getElementById('dots');
+slides.forEach((s,n)=>{
+  const d=document.createElement('i');d.onclick=()=>go(n);dots.appendChild(d);
+  const a=document.createElement('a');a.href="#";
+  const t=s.querySelector('h1,h2'); // 取每页第一个标题作为索引名，无标题则显示"第 N 页"
+  a.innerHTML=`<span class="n">${String(n+1).padStart(2,'0')}</span><span class="t">${t?t.textContent.trim().slice(0,20):'第 '+(n+1)+' 页'}</span>`;
+  a.onclick=e=>{e.preventDefault();jump.classList.remove('open');go(n)};
+  jumpPanel.appendChild(a);
+});
+function go(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  track.style.transform=`translateX(${-i*100}vw)`;
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+}
+function step(d){if(lock)return;lock=true;setTimeout(()=>lock=false,500);go(i+d)}
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){jump.classList.toggle('open');return}
+  if(jump.classList.contains('open'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key))step(1);
+  if(['ArrowLeft','PageUp'].includes(e.key))step(-1);
+});
+jump.addEventListener('click',e=>{if(e.target===jump)jump.classList.remove('open')});
+// 滚轮：方向阈值 + 时间戳节流（触控板惯性滚动只翻一页）
+addEventListener('wheel',e=>{
+  const now=Date.now();
+  if(now-lastWheel<400)return;
+  if(Math.abs(e.deltaY)>30){lastWheel=now;step(e.deltaY>0?1:-1)}
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)step(dx<0?1:-1);tx=null});
+go(0);
+</script>
+</body>
+</html>

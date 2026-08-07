@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>M3 混合模式 · 星环 X1</title>
+<style>
+:root{--paper:#ffffff;--ink:#1d1d1f;--grey-1:#f5f5f7;--text-2:#6e6e73;--accent:#0071e3;
+--pad-x:5vw;--pad-y:5.6vh;--sans:-apple-system,"SF Pro Display","Inter","PingFang SC","Microsoft YaHei",sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink)}
+#track{display:flex;height:100vh;transition:transform .55s cubic-bezier(.2,0,.38,.9)}
+.slide{flex:0 0 100vw;height:100vh;padding:var(--pad-y) var(--pad-x);display:flex;flex-direction:column;gap:2.4vh}
+.slide.dark{background:var(--ink);color:#fff}
+.chrome{display:flex;justify-content:space-between;font-size:14px;color:var(--text-2);letter-spacing:.08em;text-transform:uppercase}
+.kicker{font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1.big{font-size:min(5.8vw,10.2vh);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.lead{font-size:18px;color:var(--text-2);max-width:56ch;line-height:1.6}
+.body{flex:1;display:grid;gap:16px;align-content:start}
+.foot{font-size:14px;color:var(--text-2);border-top:1px solid rgba(0,0,0,.08);padding-top:1.6vh}
+.card{background:var(--grey-1);border-radius:18px;padding:24px}
+#dots{position:fixed;bottom:2vh;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:50}
+#dots i{width:8px;height:8px;border-radius:99px;background:rgba(0,0,0,.18);cursor:pointer;transition:.3s}
+#dots i.on{background:var(--accent);width:22px}
+.pill{position:fixed;z-index:60;font-size:14px;font-weight:600;padding:8px 16px;border-radius:99px;background:var(--grey-1);color:var(--ink);text-decoration:none;border:0;cursor:pointer;font-family:var(--sans)}
+.home{top:18px;left:18px}
+.menu-btn{top:18px;right:18px}
+/* 章节菜单呼出层 —— M3 的核心：线性播放中随时跳转 */
+#menu{position:fixed;inset:0;z-index:70;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center}
+#menu.open{display:flex}
+#menu .panel{display:grid;gap:12px;min-width:min(420px,80vw)}
+#menu h2{font-size:14px;letter-spacing:.18em;color:var(--text-2);text-transform:uppercase;margin-bottom:8px}
+#menu a{display:flex;gap:14px;align-items:baseline;padding:14px 18px;border-radius:14px;background:var(--grey-1);text-decoration:none;color:var(--ink);transition:transform .2s}
+#menu a:hover{transform:translateX(6px)}
+#menu a .n{font-size:13px;font-weight:600;color:var(--accent)}
+#menu a .t{font-size:18px;font-weight:700}
+[data-anim]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(0,0,.3,1)}
+.slide.active [data-anim]{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<!-- M3 混合模式 demo：主干线性 ←→ 翻页；点右上角"章节"或按 ESC 呼出目录跳转 -->
+<a class="pill home" href="index.html">← 模式总览</a>
+<button class="pill menu-btn" onclick="toggleMenu()">☰ 章节</button>
+
+<div id="menu">
+  <div class="panel">
+    <h2>跳转到章节 · 点击空白处关闭</h2>
+    <a href="#" onclick="jump(0)"><span class="n">01</span><span class="t">封面</span></a>
+    <a href="#" onclick="jump(1)"><span class="n">02</span><span class="t">三大产品亮点</span></a>
+    <a href="#" onclick="jump(2)"><span class="n">03</span><span class="t">技术规格</span></a>
+    <a href="#" onclick="jump(3)"><span class="n">04</span><span class="t">发售计划</span></a>
+    <a href="#" onclick="jump(4)"><span class="n">05</span><span class="t">收尾</span></a>
+  </div>
+</div>
+
+<div id="track">
+<section class="slide dark">
+  <div class="chrome"><span>M3 · HYBRID</span><span>01 / 05</span></div>
+  <div class="kicker" data-anim>STARRING X1</div>
+  <h1 class="big" data-anim>星环 X1 智能眼镜<br/>看见更大的世界</h1>
+  <p class="lead" data-anim>混合模式：←→ 正常线性演讲，被提问时按 ESC 呼出章节菜单直接跳。</p>
+  <div class="foot">←→ 翻页 · ESC 呼出章节 · 左上角返回模式总览</div>
+</section>
+
+<section class="slide">
+  <div class="chrome"><span>HIGHLIGHTS</span><span>02 / 05</span></div>
+  <div class="kicker" data-anim>HIGHLIGHTS</div>
+  <h1 class="big" data-anim>三大产品亮点</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim><b>38g 轻量化</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">钛合金镜架，全天佩戴无压感。</p></div>
+    <div class="card" data-anim><b>全天候续航</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">典型使用 14 小时。</p></div>
+    <div class="card" data-anim><b>空间显示</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">等效 3 米 120 英寸巨幕。</p></div>
+  </div>
+  <div class="foot">演示内容均为虚构</div>
+</section>
+
+<section class="slide">
+  <div class="chrome"><span>SPECS</span><span>03 / 05</span></div>
+  <div class="kicker" data-anim>SPECS</div>
+  <h1 class="big" data-anim>技术规格</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim><b>显示</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">双目 Micro-OLED · 90Hz</p></div>
+    <div class="card" data-anim><b>芯片</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">自研 R1 · 12ms 延迟</p></div>
+    <div class="card" data-anim><b>音频</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">开放式双单元定向声场</p></div>
+  </div>
+  <div class="foot">演示内容均为虚构</div>
+</section>
+
+<section class="slide">
+  <div class="chrome"><span>LAUNCH PLAN</span><span>04 / 05</span></div>
+  <div class="kicker" data-anim>LAUNCH</div>
+  <h1 class="big" data-anim>发售计划</h1>
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim><b>09.01 预售</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">官网与电商平台同步开启。</p></div>
+    <div class="card" data-anim><b>09.15 开售</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">首批现货，预购优先发货。</p></div>
+    <div class="card" data-anim><b>10.01 体验店</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">全国 20 家店开放试戴。</p></div>
+  </div>
+  <div class="foot">演示内容均为虚构</div>
+</section>
+
+<section class="slide dark">
+  <div class="chrome"><span>CLOSING</span><span>05 / 05</span></div>
+  <h1 class="big" data-anim style="margin:auto 0">星环 X1<br/>9 月见。</h1>
+  <div class="foot" style="border-color:rgba(255,255,255,.15)">谢谢观看 · 演示内容均为虚构</div>
+</section>
+</div>
+<div id="dots"></div>
+<script>
+const track=document.getElementById('track'),slides=[...document.querySelectorAll('.slide')];
+const menu=document.getElementById('menu');
+let i=0,lock=false;
+const dots=document.getElementById('dots');
+slides.forEach((_,n)=>{const d=document.createElement('i');d.onclick=()=>go(n);dots.appendChild(d)});
+function go(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  track.style.transform=`translateX(${-i*100}vw)`;
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+}
+function step(d){if(lock)return;lock=true;setTimeout(()=>lock=false,500);go(i+d)}
+function toggleMenu(){menu.classList.toggle('open')}
+function jump(n){menu.classList.remove('open');go(n);return false}
+menu.addEventListener('click',e=>{if(e.target===menu)toggleMenu()});
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){toggleMenu();return}
+  if(menu.classList.contains('open'))return;
+  if(['ArrowRight','PageDown',' '].includes(e.key))step(1);
+  if(['ArrowLeft','PageUp'].includes(e.key))step(-1);
+});
+addEventListener('wheel',e=>{if(!menu.classList.contains('open')&&Math.abs(e.deltaY)>30)step(e.deltaY>0?1:-1)});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)step(dx<0?1:-1);tx=null});
+go(0);
+</script>
+</body>
+</html>

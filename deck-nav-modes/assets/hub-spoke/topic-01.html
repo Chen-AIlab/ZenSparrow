@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>主题01详情 · 替换为你的标题</title>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<!-- 返回按钮：href 指回目录页；若本页属于二级目录，改指二级目录页 -->
+<a class="back-btn" href="index.html">← 目录</a>
+
+<!-- ============ 详情页骨架（所有详情页保持同一结构，保证格式稳定） ============ -->
+<main class="page has-back">
+  <div class="chrome"><span>SECTION 01 · TOPIC</span><span>DETAIL</span></div>
+  <div class="kicker" data-anim>TOPIC · 01</div>
+  <h1 class="big" data-anim="2">详情页标题</h1>
+  <p class="lead" data-anim="3">一句话说明本页内容。</p>
+
+  <div class="body" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card" data-anim="4"><b>要点一</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">说明文字</p></div>
+    <div class="card" data-anim="4"><b>要点二</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">说明文字</p></div>
+    <div class="card" data-anim="4"><b>要点三</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">说明文字</p></div>
+  </div>
+
+  <!-- 图片槽位：把图片放到 images/topic.png 即自动显示 -->
+  <img src="images/topic.png" onerror="this.style.display='none'" style="width:100%;border-radius:18px" data-anim="5"/>
+  <!-- 视频：把上面 img 换成 <video src="images/topic.mp4" autoplay muted loop playsinline style="width:100%;border-radius:18px"> -->
+
+  <div class="foot">脚注 / 数据来源</div>
+</main>
+</body>
+</html>

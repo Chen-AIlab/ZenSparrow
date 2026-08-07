@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>M5 时间线主轴模式 · 星环 X1</title>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+/* 横向时间线：节点上下交错，可点击进详情 */
+.tl-wrap{flex:1;display:flex;align-items:center;position:relative;padding:0 2vw}
+.tl-axis{position:absolute;left:2vw;right:2vw;top:50%;height:2px;background:rgba(0,0,0,.12)}
+.tl{display:grid;grid-template-columns:repeat(5,1fr);width:100%;position:relative}
+.tl-node{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:inherit;position:relative;transition:transform .25s}
+.tl-node:hover{transform:scale(1.06)}
+.tl-node .dot{width:16px;height:16px;border-radius:99px;background:var(--paper);border:3px solid var(--ink);z-index:1;transition:.25s}
+.tl-node:hover .dot{border-color:var(--accent)}
+.tl-node.hot .dot{background:var(--accent);border-color:var(--accent);width:22px;height:22px}
+.tl-node .date{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.tl-node .lbl{font-size:14px;color:var(--text-2);margin-top:4px;max-width:14ch}
+.tl-node.up{flex-direction:column-reverse;transform:translateY(-9vh)}
+.tl-node.up:hover{transform:translateY(-9vh) scale(1.06)}
+.tl-node.down{transform:translateY(9vh)}
+.tl-node.down:hover{transform:translateY(9vh) scale(1.06)}
+.tl-node.up .date{margin-bottom:10px}
+.tl-node.down .date{margin-top:10px}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 模式总览</a>
+<!-- M5 时间线主轴 demo：时间线本身就是目录，点击节点进详情页 -->
+<main class="page has-back">
+  <div class="chrome"><span>M5 · TIMELINE HUB</span><span>2026 H2</span></div>
+  <div class="kicker" data-anim>M5 · 时间线主轴模式</div>
+  <h1 class="big" data-anim="2">星环 X1 发售路线图</h1>
+  <p class="lead" data-anim="3">点击时间线上的任一节点，进入该节点的详情页。</p>
+
+  <div class="tl-wrap" data-anim="4">
+    <div class="tl-axis"></div>
+    <div class="tl">
+      <a class="tl-node up" href="m5-d1.html">
+        <span class="dot"></span>
+        <span><span class="date">08.20</span><br/><span class="lbl">官宣预热</span></span>
+      </a>
+      <a class="tl-node down" href="m5-d2.html">
+        <span class="dot"></span>
+        <span><span class="date">09.01</span><br/><span class="lbl">预售开启</span></span>
+      </a>
+      <a class="tl-node up hot" href="m5-d3.html">
+        <span class="dot"></span>
+        <span><span class="date">09.15</span><br/><span class="lbl">正式开售</span></span>
+      </a>
+      <a class="tl-node down" href="m5-d4.html">
+        <span class="dot"></span>
+        <span><span class="date">10.01</span><br/><span class="lbl">线下体验店</span></span>
+      </a>
+      <a class="tl-node up" href="m5-d5.html">
+        <span class="dot"></span>
+        <span><span class="date">11.11</span><br/><span class="lbl">大促冲刺</span></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="foot">演示内容均为虚构 · M5 时间线主轴模式</div>
+</main>
+</body>
+</html>

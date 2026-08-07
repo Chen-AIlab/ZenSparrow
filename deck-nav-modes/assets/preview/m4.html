@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>M4 长页滚动模式 · 星环 X1</title>
+<style>
+:root{--paper:#ffffff;--ink:#1d1d1f;--grey-1:#f5f5f7;--text-2:#6e6e73;--accent:#0071e3;
+--sans:-apple-system,"SF Pro Display","Inter","PingFang SC","Microsoft YaHei",sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink)}
+.pill{position:fixed;top:18px;left:18px;z-index:60;font-size:14px;font-weight:600;padding:8px 16px;border-radius:99px;background:var(--grey-1);color:var(--ink);text-decoration:none}
+/* 右侧章节锚点导航 */
+#rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:14px}
+#rail a{width:10px;height:10px;border-radius:99px;background:rgba(0,0,0,.15);transition:.3s}
+#rail a.on{background:var(--accent);transform:scale(1.5)}
+section{min-height:100vh;padding:12vh 8vw;display:flex;flex-direction:column;justify-content:center;gap:2.4vh}
+section.dark{background:var(--ink);color:#fff}
+.kicker{font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1.big{font-size:min(5.4vw,9.6vh);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.lead{font-size:18px;color:var(--text-2);max-width:56ch;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:2vh}
+.card{background:var(--grey-1);border-radius:18px;padding:24px}
+/* 滚动入场动效：默认隐藏，进入视口加 .in */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(0,0,.3,1)}
+section.in .rv{opacity:1;transform:none}
+section.in .rv:nth-child(2){transition-delay:.1s}
+.cards .card{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(0,0,.3,1)}
+section.in .cards .card{opacity:1;transform:none}
+section.in .cards .card:nth-child(2){transition-delay:.12s}
+section.in .cards .card:nth-child(3){transition-delay:.24s}
+#top{position:fixed;bottom:18px;right:18px;z-index:60;font-size:14px;font-weight:600;padding:8px 16px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;opacity:0;pointer-events:none;transition:.3s}
+#top.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<!-- M4 长页滚动 demo：纵向滚动，章节入场动效，右侧锚点导航 -->
+<a class="pill" href="index.html">← 模式总览</a>
+<nav id="rail">
+  <a href="#s1" aria-label="封面"></a><a href="#s2" aria-label="亮点"></a>
+  <a href="#s3" aria-label="规格"></a><a href="#s4" aria-label="发售"></a><a href="#s5" aria-label="收尾"></a>
+</nav>
+
+<section class="dark" id="s1">
+  <div class="kicker rv">M4 · SCROLLING</div>
+  <h1 class="big rv">星环 X1 智能眼镜<br/>看见更大的世界</h1>
+  <p class="lead rv">长页滚动模式：向下滚动，内容随滚动依次入场。适合自己掌控节奏的阅读场景。</p>
+</section>
+
+<section id="s2">
+  <div class="kicker rv">HIGHLIGHTS</div>
+  <h1 class="big rv">三大产品亮点</h1>
+  <div class="cards">
+    <div class="card"><b>38g 轻量化</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">钛合金镜架，全天佩戴无压感。</p></div>
+    <div class="card"><b>全天候续航</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">典型使用 14 小时。</p></div>
+    <div class="card"><b>空间显示</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">等效 3 米 120 英寸巨幕。</p></div>
+  </div>
+</section>
+
+<section id="s3" style="background:var(--grey-1)">
+  <div class="kicker rv">SPECS</div>
+  <h1 class="big rv">技术规格</h1>
+  <div class="cards">
+    <div class="card" style="background:#fff"><b>显示</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">双目 Micro-OLED · 90Hz</p></div>
+    <div class="card" style="background:#fff"><b>芯片</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">自研 R1 · 12ms 延迟</p></div>
+    <div class="card" style="background:#fff"><b>音频</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">开放式双单元定向声场</p></div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="kicker rv">LAUNCH</div>
+  <h1 class="big rv">发售计划</h1>
+  <div class="cards">
+    <div class="card"><b>09.01 预售</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">官网与电商平台同步开启。</p></div>
+    <div class="card"><b>09.15 开售</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">首批现货，预购优先发货。</p></div>
+    <div class="card"><b>10.01 体验店</b><p style="font-size:16px;color:var(--text-2);margin-top:8px">全国 20 家店开放试戴。</p></div>
+  </div>
+</section>
+
+<section class="dark" id="s5">
+  <h1 class="big rv">星环 X1<br/>9 月见。</h1>
+  <p class="lead rv">演示内容均为虚构 · M4 长页滚动模式</p>
+</section>
+
+<a id="top" href="#s1">↑ 回到顶部</a>
+<script>
+const secs=[...document.querySelectorAll('section')],rail=[...document.querySelectorAll('#rail a')],topBtn=document.getElementById('top');
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      rail.forEach((a,k)=>a.classList.toggle('on',secs[k]===e.target));
+    }
+  });
+},{threshold:.45});
+secs.forEach(s=>io.observe(s));secs[0].classList.add('in');rail[0].classList.add('on');
+addEventListener('scroll',()=>topBtn.classList.toggle('show',scrollY>innerHeight));
+</script>
+</body>
+</html>

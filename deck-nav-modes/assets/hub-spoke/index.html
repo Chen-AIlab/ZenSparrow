@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>目录 · 替换为你的标题</title>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<!-- ============ 目录页（Hub）。改文字：替换标题、lead 与每张卡片 ============ -->
+<main class="page">
+  <div class="chrome"><span>DECK TITLE · 2026</span><span>INDEX</span></div>
+  <div class="kicker" data-anim>INDEX · 目录</div>
+  <h1 class="big" data-anim="2">演示主标题写在这里</h1>
+  <p class="lead" data-anim="3">点击任一主题进入详情页；详情页左上角可返回本目录。</p>
+
+  <div class="hub-grid" data-anim="4">
+    <!-- 卡片：href 指向详情页文件名；需要强调的主题加 class="hub-card accent" -->
+    <a class="hub-card" href="topic-01.html">
+      <span class="nb">01</span>
+      <span class="ttl">主题一</span>
+      <span class="sub">一句话说明这个主题讲什么。</span>
+    </a>
+    <a class="hub-card" href="topic-02.html">
+      <span class="nb">02</span>
+      <span class="ttl">主题二</span>
+      <span class="sub">一句话说明。</span>
+    </a>
+    <!-- 二级目录示例：这张卡片链到另一个 hub 页，该页里再链到子详情页 -->
+    <a class="hub-card accent" href="topic-03.html">
+      <span class="nb">03</span>
+      <span class="ttl">主题三（可作二级目录）</span>
+      <span class="sub">下面还有多个子主题时使用。</span>
+    </a>
+  </div>
+
+  <div class="foot">发言人 · 部门 · 日期</div>
+</main>
+</body>
+</html>
