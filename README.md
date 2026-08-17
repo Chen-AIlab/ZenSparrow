@@ -23,15 +23,18 @@ git checkout <分支名>
 
 ## 安装 skill（以 deck-nav-modes 为例）
 
-`deck-nav-modes` 是一个 Claude Code skill。安装方法：
+`deck-nav-modes` 是一个 Claude Code skill（含 SKILL.md + 参考文档 + 体验馆，需完整下载）。
+
+**方式一：git clone（推荐，最可靠）**
 
 ```bash
-# 1. 下载 skill 压缩包（完整包含 SKILL.md + 参考文档 + 体验馆）
-curl -L -o deck-nav-modes.zip "https://raw.githubusercontent.com/Chen-AIlab/ZenSparrow/deck-nav-modes/deck-nav-modes.zip"
-
-# 2. 解压到 Claude Code 的 skills 目录
-unzip deck-nav-modes.zip -d ~/.claude/skills/
+git clone -b deck-nav-modes --single-branch git@github.com:Chen-AIlab/ZenSparrow.git
+cp -r ZenSparrow/deck-nav-modes ~/.claude/skills/
 ```
+
+**方式二：下载 zip 压缩包**
+
+在分支页点击 `Code → Download ZIP`，解压后把 `deck-nav-modes` 文件夹复制到 `~/.claude/skills/`。
 
 完成后重启 Claude Code，即可在对话中直接使用该 skill。
 
